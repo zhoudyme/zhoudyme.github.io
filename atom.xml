@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>zhoudy</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-22T14:44:08.447Z</updated>
+  <updated>2020-04-06T14:57:07.415Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2020/02/22/hello-world/"/>
-    <id>http://yoursite.com/2020/02/22/hello-world/</id>
-    <published>2020-02-22T14:44:08.446Z</published>
-    <updated>2020-02-22T14:44:08.447Z</updated>
+    <title>记一次Win10安装MySQL Server 5.7.20失败</title>
+    <link href="http://yoursite.com/2018/08/31/b2aa18f2781211ea944c28d244de8d5a/"/>
+    <id>http://yoursite.com/2018/08/31/b2aa18f2781211ea944c28d244de8d5a/</id>
+    <published>2018-08-31T13:18:45.000Z</published>
+    <updated>2020-04-06T14:57:07.415Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="问题状况"><a href="#问题状况" class="headerlink" title="问题状况"></a>问题状况</h1><p>在Win10下使用mysql-installer-community-5.7.20.0的msi包进行安装，试了好多次，MySQL Server 5.7.20的安装状态都显示为Failed，安装失败。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="1.png" alt="1.png" title="">                </div>                <div class="image-caption">1.png</div>            </figure><p>MySQL installer详细日志如下：</p><pre><code>1: Action 20:16:10: INSTALL.1: 1: MySQL Server 5.7 2: {81B27388-3733-4B65-8D84-AD9C9113B498}1: Action 20:16:10: FindRelatedProducts. Searching for related applications1: Action 20:16:10: AppSearch. Searching for installed applications1: Action 20:16:11: LaunchConditions. Evaluating launch conditions1: This application requires Visual Studio 2013 Redistributable. Please install the Redistributable then run this installer again.1: 1: MySQL Server 5.7 2: {81B27388-3733-4B65-8D84-AD9C9113B498} 3: 31: The action &apos;Install&apos; for product &apos;MySQL Server 5.7.20&apos; failed.</code></pre><p>仔细查看日志，发现”This application requires Visual Studio 2013 Redistributable. Please install the Redistributable then run this installer again.”，在安装过程中确实提示需要安装Microsoft Visual c++ 2013 Redistributable。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="2.png" alt="2.png" title="">                </div>                <div class="image-caption">2.png</div>            </figure><p>可是我已经按照提示安装了，在系统的程序和功能里面也能看到”Microsoft Visual c++ 2013 Redistributable(X64) - 12.0.30501”的安装信息。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="3.png" alt="3.png" title="">                </div>                <div class="image-caption">3.png</div>            </figure><p>但是日志里面还是提示需要安装Visual Studio 2013 Redistributable。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>试着搜索了一下，按照网上的提示升级安装了12.0.40660版本的Microsoft Visual c++ 2013 Redistributable，再安装MySQL Server 5.7.20，果然问题就解决了。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="4.png" alt="4.png" title="">                </div>                <div class="image-caption">4.png</div>            </figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="5.png" alt="5.png" title="">                </div>                <div class="image-caption">5.png</div>            </figure><p>暂时不知道是什么原因，可能是mysql-community-5.7.20.0版的bug吧。<br>附上Microsoft Visual C++ 2013 Redistributable Package 12.0.40660的下载链接：<br>来源: <a href="https://support.microsoft.com/en-us/kb/3179560" target="_blank" rel="noopener">Microsoft Support</a></p><p>x86：<a href="http://download.microsoft.com/download/1/8/0/180FA2CE-506D-4032-AAD1-9D7636F85179/vcredist_x86.exe" target="_blank" rel="noopener">点击下载</a></p><p>x64：<a href="http://download.microsoft.com/download/1/8/0/180FA2CE-506D-4032-AAD1-9D7636F85179/vcredist_x64.exe" target="_blank" rel="noopener">点击下载</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;h1 id=&quot;问题状况&quot;&gt;&lt;a href=&quot;#问题状况&quot; class=&quot;headerlink&quot; title=&quot;问题状况&quot;&gt;&lt;/a&gt;问题状况&lt;/h1&gt;&lt;p&gt;在Win10下使用mysql-installer-community-5.7.20.0的msi包进行安装，试了好多次，MyS
       
     
     </summary>
