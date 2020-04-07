@@ -14,7 +14,7 @@
     
     
     
-    <title>Archives | zhoudy</title>
+    <title>tags | zhoudy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -22,10 +22,12 @@
     
     <meta name="keywords" content="">
     <meta property="og:type" content="website">
-<meta property="og:title" content="zhoudy">
-<meta property="og:url" content="https://zhoudyme.github.io/archives/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://zhoudyme.github.io/tags/index.html">
 <meta property="og:site_name" content="zhoudy">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-07T12:44:25.000Z">
+<meta property="article:modified_time" content="2020-04-07T12:59:16.348Z">
 <meta property="article:author" content="zhoudy">
 <meta name="twitter:card" content="summary">
     
@@ -69,14 +71,14 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 归档
               </a>
             </li>
         
-            <li class="waves-block waves-effect">
+            <li class="waves-block waves-effect active">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 标签
@@ -108,7 +110,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Archives</div>
+        <div class="flex-col header-title ellipsis">Tags</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -127,16 +129,36 @@
         
     </div>
 </header>
-<header class="content-header archives-header">
+<header class="content-header tags-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Archives</h1>
+        <h1 class="title">Tags</h1>
         <h5 class="subtitle">
             
         </h5>
     </div>
 
     
+<div class="tabs-bar container">
+    <nav class="tags-list">
+        <a href="/tags" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
+             active">全部</a>
+        
+
+            <a href="/tags/MySQL/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">MySQL</a>
+
+        
+
+            <a href="/tags/Windows/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light">Windows</a>
+
+        
+    </nav>
+    <!-- PC show more-->
+    <div class="tags-list-more">
+        <a href="javascript:;" onclick="BLOG.tabBar(this)" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
+    </div>
+</div>
+
 
 
 </header>
@@ -144,13 +166,12 @@
 <div class="container body-wrap fade">
     
 
-    
-            
-            <h3 class="archive-separator">八月, 2018</h3>
-            <div class="waterfall">
-    
+            <h3 class="archive-separator" id="tag-MySQL">MySQL</h3>
 
-        <div class="waterfall-item">
+            <div class="waterfall">
+            
+
+                <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
       <time class="post-time" title="2018-08-31 21:18:45" datetime="2018-08-31T13:18:45.000Z"  itemprop="datePublished">2018-08-31</time>
@@ -182,9 +203,50 @@
   </article>
 </div>
 
-    
-    </div>
+            
+            </div>
+            
 
+            <h3 class="archive-separator" id="tag-Windows">Windows</h3>
+
+            <div class="waterfall">
+            
+
+                <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2018-08-31 21:18:45" datetime="2018-08-31T13:18:45.000Z"  itemprop="datePublished">2018-08-31</time>
+
+      
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
+
+
+
+    </div>
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/08/31/b2aa18f2781211ea944c28d244de8d5a/">记一次Win10安装MySQL Server 5.7.20失败</a>
+    </h3>
+  
+
+
+
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul>
+
+    </div>
+    
+  </article>
+</div>
+
+            
+            </div>
+            
     
 </div>
 
@@ -227,7 +289,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/archives/&title=zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/tags/&title=《tags》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -237,22 +299,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/archives/&title=zhoudy&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/tags/&title=《tags》 — zhoudy&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/archives/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/tags/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=zhoudy&url=https://zhoudyme.github.io/archives/&via=https://zhoudyme.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tags》 — zhoudy&url=https://zhoudyme.github.io/tags/&via=https://zhoudyme.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/archives/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/tags/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -263,7 +325,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABy0lEQVR42u3aMW7EMAwEwPv/p506MOJbkpJgBKMycHTjhiCX/nzic93O85P3/3p+cvHBxcUdc6/Hkz+T/9bzi325HxcX9yC3enVSZ/J7CsUOFxf3xdyEdb8ZFxf3v3JHDUp8Py4u7hu4yfCT5xV5mrFxVsPFxd2VYxRak1UDz7J8FxcXt8W9imcSsPZ+8dcNuLi4R7i99qUahVSf/NI24eLiHuQ+R5yFQjPutsqzGi4u7mZu8pdqSUpanDxAwcXF3c3Nlxl5qUp+vrnIwcXFPcLtXZoUuGTgSRY2o74MFxd3wK0ONs2hJfm0ojer4eLibuauGlp6IWm5kOHi4m7gJtdVl6/5q1bDF1xc3DPcXmC6dnVaLY64uLhnuOWeqPiJ56rPQ3FxcU9yJ4vPXmiStETlwBQXF3cDN4ks8+XHqk++/hx+cHFxj3CfC9ME2huNRhsbXFzcAfcqnmRQmQSp5S0uLi7uBm41qsiblaR4JWlN82VwcXHH3PL40Qpbl41YuLi4B7nVQpN/YDEZfqLAFBcX9wXcfPWSF6zyxIaLi/tKbjVynaccuLi457nVBqW6Oq0WxAWzGi4u7oBbLiXx/jYfkJKXx8XFPcL9AWf8AS/zQEteAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzElEQVR42u3aQW7FIAwFwH//S1Opq25InzHQVBqvoiiJhiwsbPP5xDG+4/n++BHP30mebAUuLm6bOx7j+ZnZYmZ3Zm8lBlxc3PvcJEnl13kuyg24uLjv5ObJ6zkV5kvFxcX9X9xOwvqDRIaLi7vEzcubEURSAh2v1XBxcRvcasP0xPXB/i4uLm6RO5aiugEamwIXF/cON9m+5MVMZzxTaKTi4uIe5vY/miSvtUHshmkwLi5ug9s/YFFtgy6OUnBxca9wq0emqsPUXV+ebnRwcXGvcPOE8lz2VEum1uQHFxd3K7fa6Ky2QpJDHou1Gi4u7mHurm3N2nHP1hAFFxf3MDdvYq41T6tLnc6EcXFxD3PzQ9idMUlyvQjFxcU9wK0OSPKSpj9k/eS9GVxc3K3caKi5dL46b6zkC8bFxb3DrY5I1xqjySGMyICLi3uFm6ezpOmZj1SruxdcXNyb3FGMvExqHb2a/ThcXNwr3H4W3DVEqS4DFxf3NDdJXvkz1TKpXPzg4uJe5OZpKK+iOhm0MP/BxcV9Abfa7MjTWWTDxcV9GXfXW60fgYuLe5GbFz/VtmZ1Ab+kP1xc3CvctVKkevyi+uS2/i4uLm6N+wV31IuyrJIwIQAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
