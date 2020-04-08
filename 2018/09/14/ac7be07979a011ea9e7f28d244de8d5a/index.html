@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Oracle数据库查询表结构 | zhoudy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Oracle">
+    <meta name="description" content="12345678910111213141516171819202122232425SELECT   tab_col.table_name AS &quot;表名&quot;,   tab_cmt.comments AS &quot;表说明&quot;,   tab_col.column_id AS &quot;字段序号&quot;,   tab_col.column_name AS &quot;字段名&quot;,   col_cmt.comments AS &quot;字段说明&quot;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle数据库查询表结构">
+<meta property="og:url" content="https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/index.html">
+<meta property="og:site_name" content="zhoudy">
+<meta property="og:description" content="12345678910111213141516171819202122232425SELECT   tab_col.table_name AS &quot;表名&quot;,   tab_cmt.comments AS &quot;表说明&quot;,   tab_col.column_id AS &quot;字段序号&quot;,   tab_col.column_name AS &quot;字段名&quot;,   col_cmt.comments AS &quot;字段说明&quot;,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-14T12:18:09.000Z">
+<meta property="article:modified_time" content="2020-04-08T14:04:38.028Z">
+<meta property="article:author" content="zhoudy">
+<meta property="article:tag" content="Oracle">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhoudy" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhoudy</h5>
+          <a href="mailto:" title="" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhoudyme" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Oracle数据库查询表结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Oracle数据库查询表结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-14T12:18:09.000Z" itemprop="datePublished" class="page-time">
+  2018-09-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Oracle/">Oracle</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-ac7be07979a011ea9e7f28d244de8d5a"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Oracle数据库查询表结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-14 20:18:09" datetime="2018-09-14T12:18:09.000Z"  itemprop="datePublished">2018-09-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Oracle/">Oracle</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">  tab_col.table_name AS <span class="string">"表名"</span>, </span><br><span class="line">  tab_cmt.comments AS <span class="string">"表说明"</span>, </span><br><span class="line">  tab_col.column_id AS <span class="string">"字段序号"</span>, </span><br><span class="line">  tab_col.column_name AS <span class="string">"字段名"</span>, </span><br><span class="line">  col_cmt.comments AS <span class="string">"字段说明"</span>, </span><br><span class="line">  tab_col.data_type AS <span class="string">"数据类型"</span>, </span><br><span class="line">  tab_col.data_length AS <span class="string">"数据长度"</span>, </span><br><span class="line">  tab_col.data_precision AS <span class="string">"整数位"</span>, </span><br><span class="line">  tab_col.data_scale AS <span class="string">"小数位"</span> </span><br><span class="line">FROM </span><br><span class="line">  all_col_comments col_cmt, </span><br><span class="line">  all_tab_columns tab_col, </span><br><span class="line">  all_tab_comments tab_cmt </span><br><span class="line">WHERE </span><br><span class="line">  col_cmt.table_name IN (SELECT user_tab.table_name FROM user_all_tables user_tab) </span><br><span class="line">  AND col_cmt.OWNER = tab_col.OWNER </span><br><span class="line">  AND col_cmt.table_name = tab_col.table_name </span><br><span class="line">  AND col_cmt.column_name = tab_col.column_name </span><br><span class="line">  AND tab_cmt.table_name = col_cmt.table_name </span><br><span class="line">  AND tab_cmt.OWNER = col_cmt.OWNER </span><br><span class="line">  AND col_cmt.OWNER = <span class="string">'用户名'</span> </span><br><span class="line">  AND tab_col.table_name = <span class="string">'表名'</span> </span><br><span class="line">ORDER BY </span><br><span class="line">  tab_col.column_id;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://zhoudyme.github.io">
+            <img src="/img/avatar.jpg" alt="zhoudy">
+            zhoudy
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/&title=《Oracle数据库查询表结构》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/&title=《Oracle数据库查询表结构》 — zhoudy&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle数据库查询表结构》 — zhoudy&url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/&via=https://zhoudyme.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">URL和URI的区别[译][转载]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/07/868ae745799d11ea9e7f28d244de8d5a/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue.js新手入门指南[转载]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>zhoudy &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/&title=《Oracle数据库查询表结构》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/&title=《Oracle数据库查询表结构》 — zhoudy&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle数据库查询表结构》 — zhoudy&url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/&via=https://zhoudyme.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACx0lEQVR42u3ay47iQBAEQP7/p3evM5rBZFa5WVYKn5Dxo8NIriarH494+/Nl+7rn5+dnxz87K9/z82q3bXh4eHiLoT+73PX+nJQjk4d7PWY8PDy807xnb9TrAbXb9dt79vmFBQ8PD+8DeNdF5fr45L6z4oGHh4f3v/CSyCCZUl+XnH9WGPDw8PAuee2l7/o2eQTttB4PDw/vNC/vIn3O5yP9PTw8PLx1Vz1phuWLDNqSc90Gi0aLh4eHd4DXRq7t4qq7Jt/5dBkPDw/vNK9d8JS/4vP5bdskK0aCh4eHd4CXR6tJSUhe+m28m0/WhzUNDw8Pr+TNLpq/uPOS0IYgERUPDw/vMC+ZHOfH5MUmf8T1t3h4eHjHeLNlTLMp+Owx5SXnl6wFDw8P71ZeEhPkAUR7bvIOb8vDL8fg4eHhvZE3XOQUL0do49q8tYaHh4f3Ht5sEHkAkTfD2rG9uA4eHh7erbwkIMg/75cL7AvSi6wFDw8Pb81rY9lNDLGZNOf4qHrg4eHhLXj7RVd5YVgFCmVRwcPDw3sPbzb9nYUaddWKA4hvV8PDw8M7wGtv3Ea0+XXyu+c/Bh4eHt4JXv4MZgPaRLezNtiLfwx4eHh4a15+y7YBNlukNZtkF9NoPDw8vDVvNtltg9e8qBQrxZKygYeHh3eAN4tcNwsF2oxkU37w8PDwzvE2gDZybc9tFxDc/Pvg4eHhlW34fKB5BLyPcesCg4eHh/dGXtKIakOKc62v4fosPDw8vEWMm/+9TyayybfJw2pj32/f4uHh4R3gzfpEs2NmAW4+TX9sNjw8PLySlxeDNkjNX/2zaDgqDHh4eHjHeG3naDPZvbeavTgLDw8P72N4bVNqtqeNd/Hw8PA+k5cvz9pfbbacCw8PD+89vLzplQcBye3bxltelvDw8PDO8do//PkxeYurXYhwQ08PDw8Pb8L7C8dKIhaJIObdAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'zhoudy';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'zhoudy';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
