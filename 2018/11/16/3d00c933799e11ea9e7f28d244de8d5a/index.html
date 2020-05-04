@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>URL和URI的区别[译][转载] | zhoudy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="HTTP,URL,URI">
+    <meta name="description" content="译文译者：华科小涛：http:&#x2F;&#x2F;www.cnblogs.com&#x2F;hust-ghtao&#x2F; 初学http协议，就被这两个相似的术语搞蒙了，查了很多资料，总算搞清楚了。（找资料还是英文啊，靠谱。。。）。 本篇博客翻译自：https:&#x2F;&#x2F;danielmiessler.com&#x2F;study&#x2F;url_vs_uri&#x2F;，是在是一片简单实用的好文，对帮我们弄清概念很有帮助： 译文：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="URL和URI的区别[译][转载]">
+<meta property="og:url" content="https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/index.html">
+<meta property="og:site_name" content="zhoudy">
+<meta property="og:description" content="译文译者：华科小涛：http:&#x2F;&#x2F;www.cnblogs.com&#x2F;hust-ghtao&#x2F; 初学http协议，就被这两个相似的术语搞蒙了，查了很多资料，总算搞清楚了。（找资料还是英文啊，靠谱。。。）。 本篇博客翻译自：https:&#x2F;&#x2F;danielmiessler.com&#x2F;study&#x2F;url_vs_uri&#x2F;，是在是一片简单实用的好文，对帮我们弄清概念很有帮助： 译文：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9499986-14aa1143e365bac8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2018-11-16T12:47:10.000Z">
+<meta property="article:modified_time" content="2020-04-08T14:25:04.989Z">
+<meta property="article:author" content="zhoudy">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="URL">
+<meta property="article:tag" content="URI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9499986-14aa1143e365bac8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhoudy" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhoudy</h5>
+          <a href="mailto:" title="" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhoudyme" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">URL和URI的区别[译][转载]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">URL和URI的区别[译][转载]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-16T12:47:10.000Z" itemprop="datePublished" class="page-time">
+  2018-11-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#译文"><span class="post-toc-number">1.</span> <span class="post-toc-text">译文</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#URI，URL，URN"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">URI，URL，URN</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">结语</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#补充"><span class="post-toc-number">2.</span> <span class="post-toc-text">补充</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-3d00c933799e11ea9e7f28d244de8d5a"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">URL和URI的区别[译][转载]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-16 20:47:10" datetime="2018-11-16T12:47:10.000Z"  itemprop="datePublished">2018-11-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="译文"><a href="#译文" class="headerlink" title="译文"></a>译文</h1><p>译者：华科小涛：<a href="http://www.cnblogs.com/hust-ghtao/" target="_blank" rel="noopener" title="http://www.cnblogs.com/hust-ghtao/">http://www.cnblogs.com/hust-ghtao/</a></p>
+<p>初学http协议，就被这两个相似的术语搞蒙了，查了很多资料，总算搞清楚了。（找资料还是英文啊，靠谱。。。）。</p>
+<p>本篇博客翻译自：<a href="https://danielmiessler.com/study/url_vs_uri/" target="_blank" rel="noopener" title="https://danielmiessler.com/study/url_vs_uri/">https://danielmiessler.com/study/url_vs_uri/</a>，是在是一片简单实用的好文，对帮我们弄清概念很有帮助：</p>
+<p>译文：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/9499986-14aa1143e365bac8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>一直存在很多技术上的争论，其中最为妙的恐怕就是web地址应该叫什么的问题。通常情况就是这样：有人把地址栏的内容叫“URL”，这时候有些人就来劲了：“不！其实那时URI。。。”</p>
+<p>对于这种纠正的反应呢，通常也有这么几种情况，心眼小的就寻思这人赶紧走吧，淡定点的就耸耸肩表示同意，火气大的就拔刀相向了好不？</p>
+<p>那这篇文章呢，就对这个只是提供一个简单的总结，毕竟互黑也要黑到点子上是吧。</p>
+<h2 id="URI，URL，URN"><a href="#URI，URL，URN" class="headerlink" title="URI，URL，URN"></a>URI，URL，URN</h2><p>URI = Universal Resource Identifier 统一资源标志符<br>URL = Universal Resource Locator 统一资源定位符<br>URN = Universal Resource Name 统一资源名称</p>
+<p>从上面的那幅图可以看出来，一共有三个不同的概念URI，URL，URN。这讨论这样的问题时，最好的方法就是回到原点啊，这里我们在<a href="http://tools.ietf.org/html/rfc3986" target="_blank" rel="noopener">RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</a>里面收集了点资料：</p>
+<p>“A Uniform Resource Identifier (URI) 是一个紧凑的字符串用来标示抽象或物理资源。”</p>
+<p>“A URI 可以进一步被分为定位符、名字或两者都是. 术语“Uniform Resource Locator” (URL) 是URI的子集, 除了确定一个资源,还提供一种定位该资源的主要访问机制(如其网络“位置”)。“</p>
+<p>那我们无所不知的维基百科把这段消化的很好，并描述的更加形象了：</p>
+<p>“URI可以分为URL,URN或同时具备locators 和names特性的一个东西。URN作用就好像一个人的名字，URL就像一个人的地址。换句话说：URN确定了东西的身份，URL提供了找到它的方式。”</p>
+<p>通过这些描述我们可以得到一些结论：</p>
+<ul>
+<li>首先，URL是URI的一种（通过那个图就看的出来吧）。所以有人跟你说URL不是URI，他就错了呗。但也不是所有的URI都是URL哦，就好像蝴蝶都会飞，但会飞的可不都是蝴蝶啊，你让苍蝇怎么想！</li>
+<li>让URI能成为URL的当然就是那个“访问机制”，“网络位置”。e.g. <code>http://</code> or <code>ftp://</code>.。</li>
+<li>URN是唯一标识的一部分，就是一个特殊的名字。</li>
+</ul>
+<p>　　下面就来看看例子吧，当来也是来自权威的RFC：</p>
+<ul>
+<li><code>ftp://ftp.is.co.za/rfc/rfc1808.txt</code> (also a URL because of the protocol)</li>
+<li><code>http://www.ietf.org/rfc/rfc2396.txt</code> (also a URL because of the protocol)</li>
+<li><code>ldap://[2001:db8::7]/c=GB?objectClass?one</code> (also a URL because of the protocol)</li>
+<li><code>mailto:John.Doe@example.com</code> (also a URL because of the protocol)</li>
+<li><code>news:comp.infosystems.www.servers.unix</code> (also a URL because of the protocol)</li>
+<li><code>tel:+1-816-555-1212</code></li>
+<li><code>telnet://192.0.2.16:80/</code> (also a URL because of the protocol)</li>
+<li><code>urn:oasis:names:specification:docbook:dtd:xml:4.1.2</code></li>
+</ul>
+<p>　　这些全都是URI，其中有些事URL。哪些? 就是那些提供了访问机制的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>下面到了回答问题的时候了：</p>
+<p>当我们替代web地址的时候，URI和URL那个更准确？</p>
+<p>基于我读的很多的文章，包括RFC，我想说URI更准确。</p>
+<p>别急，我有我的理由：</p>
+<p>我们经常使用的URI不是严格技术意义上的URL。例如：你需要的文件在<code>files.hp.com</code>. 这是URI，但不是URL–系统可能会对很多协议和端口都做出正确的反应。</p>
+<p>你去<code>http://files.hp.com</code> 和<code>[ftp://files.hp.com](ftp://files.hp.com/)</code>.可能得到完全不同的内容。这种情况可能更加普遍，想想不同谷歌域名上的不同服务啊。</p>
+<p>所以，用URI吧，这样你通常技术上是正确的，URL可不一定。最后“URL”这个术语正在被弃用。所以明智吧少年！</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>If you don’t mind being “that guy”, <strong>URI</strong> is probably the more accurate term to use. But if you are in the linguist / “use what’s understood” camp, feel free to go with <strong>URL</strong>.</p>
+<p>参考：</p>
+<p><a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Uniform_Resource_Identifier</a></p>
+<p><a href="https://danielmiessler.com/study/url_vs_uri/" target="_blank" rel="noopener" title="https://danielmiessler.com/study/url_vs_uri/">https://danielmiessler.com/study/url_vs_uri/</a></p>
+<p>转载于：<a href="https://www.cnblogs.com/hust-ghtao/p/4724885.html" target="_blank" rel="noopener">https://www.cnblogs.com/hust-ghtao/p/4724885.html</a><br>作者：华科小涛</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p><strong>URL和URN的形式：</strong></p>
+<p><strong>URL</strong></p>
+<p>URI 的最常见形式是统一资源定位符URL，它也被称为 <em>Web 地址</em>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;developer.mozilla.org</span><br><span class="line">https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Learn&#x2F;</span><br><span class="line">https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;search?q&#x3D;URL</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器的地址栏中输入上述任一地址，浏览器就会加载相应的网页（资源）。</p>
+<p>URL 由多个必须或可选的组件构成。下面给出了一个复杂的 URL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;www.example.com:80&#x2F;path&#x2F;to&#x2F;myfile.html?key1&#x3D;value1&amp;key2&#x3D;value2#SomewhereInTheDocument</span><br></pre></td></tr></table></figure>
+
+<p><strong>URN</strong></p>
+<p>URN 是另一种形式的 URI，它通过特定命名空间中的唯一名称来标识资源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">urn:isbn:9780141036144</span><br><span class="line">urn:ietf:rfc:7230</span><br></pre></td></tr></table></figure>
+
+<p>上面两个 URN 标识了下面的资源：</p>
+<ul>
+<li>乔治·奥威尔所著的《1984》</li>
+<li>IETF规范7230，超文本传输​​协议 (HTTP/1.1)：Message Syntax and Routing.</li>
+</ul>
+<p><strong>PS：原来URI包括URL和URN，后来URN没流行起来，导致几乎目前所有的URL都是URN(知乎用户)</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://zhoudyme.github.io">
+            <img src="/img/avatar.jpg" alt="zhoudy">
+            zhoudy
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URI/" rel="tag">URI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URL/" rel="tag">URL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/&title=《URL和URI的区别[译][转载]》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/&title=《URL和URI的区别[译][转载]》 — zhoudy&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《URL和URI的区别[译][转载]》 — zhoudy&url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/&via=https://zhoudyme.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/19/ba55bd2879a211ea9e7f28d244de8d5a/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">纯css，div隐藏滚动条，保留鼠标滚动效果[转载]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/14/ac7be07979a011ea9e7f28d244de8d5a/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Oracle数据库查询表结构</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>zhoudy &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/&title=《URL和URI的区别[译][转载]》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/&title=《URL和URI的区别[译][转载]》 — zhoudy&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《URL和URI的区别[译][转载]》 — zhoudy&url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/&via=https://zhoudyme.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/2018/11/16/3d00c933799e11ea9e7f28d244de8d5a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQXKEMAwEwPz/08k1ObDMyDZFpZrTFrsBNwesjPT1FR/fv47P314dv395dc3PZ67uvuHAw8PDW1j652VdLfTzI/h8ZnblZM14eHh4p3lXb9T8N/nrPr9X8vnGgoeHh/cCXlsiJ6Tk7nh4eHj/iZcX4utXw8PDw3sPbxa/rgcNSWCRPwg8PDy8Z3h5F+k9n4/09/Dw8PCWu+qzDSBvVs22nGK1eHh4eAd4+Qs3KVuTheYF96xcxsPDw3uSNytk89uvLDe54+Wa8fDw8Lby8sJ0NkQ12wZWrlmHEXh4eHglL79E+7Jui+P8EbdjCnh4eHinebMhgNmIQFuOz77Fw8PD28vb22pqi/LkQSQP8fJeeHh4eI/zZjvMLG5IftlGFXh4eHgneLMW197HMQtEIhgeHh7eAV4bIiTxbnJ+Fl7UoQkeHh7eI7w8ok1C2Fn4uxKF1GEEHh4e3gJvNnSVDxasFM3DoSs8PDy8w7y8Md9S87vkUW8U/uLh4eEd4K23tWZxbV6Ub2iz4eHh4W3l5UFAW6/mBXr7V3UYgYeHh7eVly96NhSVt75mowlt8oCHh4e3zstfxHUEMBrbmhXZl5sEHh4e3gFey2h5bdk9iz9uimk8PDy8A7y8LF4vdtsQYWVICw8PD+8cLx+6yhc3iyHy7WSYr+Dh4eFt5SXU9TJ3PcatS3A8PDy8B3ltwT2LGHaV7PXGgIeHhzfifZdHW4LPBhRWYt8/3+Lh4eEd4OVHGy60Df58y6mbXnh4eHgHeCvRw6ykbkvtlSvj4eHhneMlIcVsz5mNDuS72c1f4eHh4b2A18YHK2faeBcPDw/vnbxZs6odJmhHDW7aYHh4eHgHeHnTqwW3ba22+N6WteDh4eF1ffniH/4E3DbV8k3lYH8PDw8P7/6+PyhYkpd1YFjkAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'zhoudy';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'zhoudy';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

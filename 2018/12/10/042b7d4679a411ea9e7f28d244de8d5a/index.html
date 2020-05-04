@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Spring5：@Autowired注解、@Resource注解和@Service注解[转载] | zhoudy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Spring">
+    <meta name="description" content="什么是注解传统的Spring做法是使用.xml文件来对bean进行注入或者是配置aop、事物，这么做有两个缺点： 1、如果所有的内容都配置在.xml文件中，那么.xml文件将会十分庞大；如果按需求分开.xml文件，那么.xml文件又会非常多。总之这将导致配置文件的可读性与可维护性变得很低 2、在开发中在.java文件和.xml文件之间不断切换，是一件麻烦的事，同时这种思维上的不连贯也会降低开发的效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring5：@Autowired注解、@Resource注解和@Service注解[转载]">
+<meta property="og:url" content="https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/index.html">
+<meta property="og:site_name" content="zhoudy">
+<meta property="og:description" content="什么是注解传统的Spring做法是使用.xml文件来对bean进行注入或者是配置aop、事物，这么做有两个缺点： 1、如果所有的内容都配置在.xml文件中，那么.xml文件将会十分庞大；如果按需求分开.xml文件，那么.xml文件又会非常多。总之这将导致配置文件的可读性与可维护性变得很低 2、在开发中在.java文件和.xml文件之间不断切换，是一件麻烦的事，同时这种思维上的不连贯也会降低开发的效">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-10T12:10:02.000Z">
+<meta property="article:modified_time" content="2020-04-08T14:28:14.256Z">
+<meta property="article:author" content="zhoudy">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhoudy" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zhoudy</h5>
+          <a href="mailto:" title="" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhoudyme" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Spring5：@Autowired注解、@Resource注解和@Service注解[转载]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Spring5：@Autowired注解、@Resource注解和@Service注解[转载]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-10T12:10:02.000Z" itemprop="datePublished" class="page-time">
+  2018-12-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JAVA/">JAVA</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是注解"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是注解</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#不使用注解"><span class="post-toc-number">2.</span> <span class="post-toc-text">不使用注解</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Autowired"><span class="post-toc-number">3.</span> <span class="post-toc-text">@Autowired</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Autowired接口注入"><span class="post-toc-number">4.</span> <span class="post-toc-text">@Autowired接口注入</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Resource"><span class="post-toc-number">5.</span> <span class="post-toc-text">@Resource</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Service"><span class="post-toc-number">6.</span> <span class="post-toc-text">@Service</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#补充细节"><span class="post-toc-number">7.</span> <span class="post-toc-text">补充细节</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-042b7d4679a411ea9e7f28d244de8d5a"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Spring5：@Autowired注解、@Resource注解和@Service注解[转载]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-10 20:10:02" datetime="2018-12-10T12:10:02.000Z"  itemprop="datePublished">2018-12-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JAVA/">JAVA</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="什么是注解"><a href="#什么是注解" class="headerlink" title="什么是注解"></a>什么是注解</h1><p>传统的Spring做法是使用.xml文件来对bean进行注入或者是配置aop、事物，这么做有两个缺点：</p>
+<p>1、如果所有的内容都配置在.xml文件中，那么.xml文件将会十分庞大；如果按需求分开.xml文件，那么.xml文件又会非常多。总之这将导致配置文件的可读性与可维护性变得很低</p>
+<p>2、在开发中在.java文件和.xml文件之间不断切换，是一件麻烦的事，同时这种思维上的不连贯也会降低开发的效率</p>
+<p>为了解决这两个问题，Spring引入了注解，通过”@XXX”的方式，让注解与Java Bean紧密结合，既大大减少了配置文件的体积，又增加了Java Bean的可读性与内聚性。</p>
+<p>本篇文章，讲讲最重要的三个Spring注解，也就是@Autowired、@Resource和@Service，希望能通过有限的篇幅说清楚这三个注解的用法。</p>
+<h1 id="不使用注解"><a href="#不使用注解" class="headerlink" title="不使用注解"></a>不使用注解</h1><p>先看一个不使用注解的Spring示例，在这个示例的基础上，改成注解版本的，这样也能看出使用与不使用注解之间的区别，先定义一个老虎：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Tiger</span><br><span class="line">&#123;</span><br><span class="line">    private String tigerName = <span class="string">"TigerKing"</span>;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"TigerName:"</span> + tigerName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再定义一个猴子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Monkey</span><br><span class="line">&#123;</span><br><span class="line">    private String monkeyName = <span class="string">"MonkeyKing"</span>;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"MonkeyName:"</span> + monkeyName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义一个动物园：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Zoo</span><br><span class="line">&#123;</span><br><span class="line">    private Tiger tiger;</span><br><span class="line">    private Monkey monkey;</span><br><span class="line">    </span><br><span class="line">    public void setTiger(Tiger tiger)</span><br><span class="line">    &#123;</span><br><span class="line">        this.tiger = tiger;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void setMonkey(Monkey monkey)</span><br><span class="line">    &#123;</span><br><span class="line">        this.monkey = monkey;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public Tiger getTiger()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> tiger;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public Monkey getMonkey()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> monkey;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> tiger + <span class="string">"\n"</span> + monkey;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>spring的配置文件这么写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>   </span><br><span class="line">    xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span><br><span class="line">    xmlns:context=<span class="string">"http://www.springframework.org/schema/context"</span>  </span><br><span class="line">    xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans </span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/context</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/context/spring-context-4.2.xsd"</span></span><br><span class="line">    default-autowire=<span class="string">"byType"</span>&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=<span class="string">"zoo"</span> class=<span class="string">"com.xrq.bean.Zoo"</span> &gt;</span><br><span class="line">        &lt;property name=<span class="string">"tiger"</span> ref=<span class="string">"tiger"</span> /&gt;</span><br><span class="line">        &lt;property name=<span class="string">"monkey"</span> ref=<span class="string">"monkey"</span> /&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=<span class="string">"tiger"</span> class=<span class="string">"com.xrq.domain.Tiger"</span> /&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"monkey"</span> class=<span class="string">"com.xrq.domain.Monkey"</span> /&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<p>都很熟悉，权当复习一遍了。</p>
+<h1 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h1><p>@Autowired顾名思义，就是自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property。当然，getter看个人需求，如果私有属性需要对外提供的话，应当予以保留。</p>
+<p>因此，引入@Autowired注解，先看一下spring配置文件怎么写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>   </span><br><span class="line">    xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span><br><span class="line">    xmlns:context=<span class="string">"http://www.springframework.org/schema/context"</span>  </span><br><span class="line">    xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans </span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/context</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/context/spring-context-4.2.xsd"</span>&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;context:component-scan base-package=<span class="string">"com.xrq"</span> /&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=<span class="string">"zoo"</span> class=<span class="string">"com.xrq.bean.Zoo"</span> /&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"tiger"</span> class=<span class="string">"com.xrq.domain.Tiger"</span> /&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"monkey"</span> class=<span class="string">"com.xrq.domain.Monkey"</span> /&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意第10行，使用必须告诉spring一下我要使用注解了，告诉的方式有很多，&lt;context:component-scan base-package=”xxx” /&gt;是一种最简单的，spring会自动扫描xxx路径下的注解。</p>
+<p>看到第12行，原来zoo里面应当注入两个属性tiger、monkey，现在不需要注入了。再看下，Zoo.java也很方便，把getter/setter都可以去掉：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Zoo</span><br><span class="line">&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private Tiger tiger;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    private Monkey monkey;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> tiger + <span class="string">"\n"</span> + monkey;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里@Autowired注解的意思就是，当Spring发现@Autowired注解时，将自动在代码上下文中找到和其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。</p>
+<p>有一个细节性的问题是，假如bean里面有两个property，Zoo.java里面又去掉了属性的getter/setter并使用@Autowired注解标注这两个属性那会怎么样？答案是<strong>Spring会按照xml优先的原则去Zoo.java中寻找这两个属性的getter/setter，导致的结果就是初始化bean报错。</strong></p>
+<p>OK，假设此时我把.xml文件的13行、14行两行给去掉，再运行，会抛出异常：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> org.springframework.beans.factory.BeanCreationException: Error creating bean with name <span class="string">'Zoo'</span>: Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.xrq.domain.Tiger com.xrq.bean.Zoo.ttiger; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of <span class="built_in">type</span> [com.xrq.domain.Tiger] found <span class="keyword">for</span> dependency: expected at least 1 bean <span class="built_in">which</span> qualifies as autowire candidate <span class="keyword">for</span> this dependency. Dependency annotations: &#123;@org.springframework.beans.factory.annotation.Autowired(required=<span class="literal">true</span>)&#125;</span><br><span class="line">    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1214)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractBeanFactory<span class="variable">$1</span>.getObject(AbstractBeanFactory.java:305)</span><br><span class="line">    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:301)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)</span><br><span class="line">    at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:772)</span><br><span class="line">    at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:835)</span><br><span class="line">    at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:537)</span><br><span class="line">    at org.springframework.context.support.ClassPathXmlApplicationContext.&lt;init&gt;(ClassPathXmlApplicationContext.java:139)</span><br><span class="line">    at org.springframework.context.support.ClassPathXmlApplicationContext.&lt;init&gt;(ClassPathXmlApplicationContext.java:83)</span><br><span class="line">    at com.xrq.test.MyTest.main(MyTest.java:13)</span><br><span class="line">Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.xrq.domain.Tiger com.xrq.bean.Zoo.ttiger; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of <span class="built_in">type</span> [com.xrq.domain.Tiger] found <span class="keyword">for</span> dependency: expected at least 1 bean <span class="built_in">which</span> qualifies as autowire candidate <span class="keyword">for</span> this dependency. Dependency annotations: &#123;@org.springframework.beans.factory.annotation.Autowired(required=<span class="literal">true</span>)&#125;</span><br><span class="line">    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor<span class="variable">$AutowiredFieldElement</span>.inject(AutowiredAnnotationBeanPostProcessor.java:571)</span><br><span class="line">    at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)</span><br><span class="line">    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)</span><br><span class="line">    ... 13 more</span><br><span class="line">Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of <span class="built_in">type</span> [com.xrq.domain.Tiger] found <span class="keyword">for</span> dependency: expected at least 1 bean <span class="built_in">which</span> qualifies as autowire candidate <span class="keyword">for</span> this dependency. Dependency annotations: &#123;@org.springframework.beans.factory.annotation.Autowired(required=<span class="literal">true</span>)&#125;</span><br><span class="line">    at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuchBeanDefinitionException(DefaultListableBeanFactory.java:1373)</span><br><span class="line">    at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1119)</span><br><span class="line">    at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1014)</span><br><span class="line">    at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor<span class="variable">$AutowiredFieldElement</span>.inject(AutowiredAnnotationBeanPostProcessor.java:543)</span><br><span class="line">    ... 15 more</span><br></pre></td></tr></table></figure>
+
+<p>因为，@Autowired注解要去寻找的是一个Bean，Tiger和 Monkey的Bean定义都给去掉了，自然就不是一个Bean了，Spring容器找不到也很好理解。那么，如果属性找不到我不想让Spring容器抛 出异常，而就是显示null，可以吗？可以的，其实异常信息里面也给出了提示了，就是将@Autowired注解的required属性设置为false 即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Zoo</span><br><span class="line">&#123;</span><br><span class="line">    @Autowired(required = <span class="literal">false</span>)</span><br><span class="line">    private Tiger tiger;</span><br><span class="line">    </span><br><span class="line">    @Autowired(required = <span class="literal">false</span>)</span><br><span class="line">    private Monkey monkey;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> tiger + <span class="string">"\n"</span> + monkey;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Autowired接口注入"><a href="#Autowired接口注入" class="headerlink" title="@Autowired接口注入"></a>@Autowired接口注入</h1><p>上面的比较简单，我们只是简单注入一个Java类，那么如果有一个接口，有多个实现，Bean里引用的是接口名，又该怎么做呢？比如有一个Car接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Car</span><br><span class="line">&#123;</span><br><span class="line">    public String carName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两个实现类BMW和Benz：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class BMW implements Car</span><br><span class="line">&#123;</span><br><span class="line">    public String carName()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"BMW car"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class Benz implements Car</span><br><span class="line">&#123;</span><br><span class="line">    public String carName()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"Benz car"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写一个CarFactory，引用Car：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class CarFactory</span><br><span class="line">&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private Car car;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> car.carName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不用说，一定是报错的，Car接口有两个实现类，Spring并不知道应当引用哪个实现类。这种情况通常有两个解决办法：</p>
+<p>1、删除其中一个实现类，Spring会自动去base-package下寻找Car接口的实现类，发现Car接口只有一个实现类，便会直接引用这个实现类</p>
+<p>2、实现类就是有多个该怎么办？此时可以使用@Qualifier注解：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class CarFactory</span><br><span class="line">&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    @Qualifier(<span class="string">"BMW"</span>)</span><br><span class="line">    private Car car;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> car.carName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意@Qualifier注解<strong>括号里面的应当是Car接口实现类的类名，我之前试的时候一直以为是bean的名字，所以写了”bMW”，结果一直报错。</strong></p>
+<h1 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h1><p>把@Resource注解放在@Autowired下面说，是因为它们作用非常相似，这个就简单说了，例子过后点明一下@Resource和@Autowired的区别。先看一下@Resource，直接写Zoo.java了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class Zoo</span><br><span class="line">&#123;</span><br><span class="line">    @Resource(name = <span class="string">"tiger"</span>)</span><br><span class="line">    private Tiger tiger;</span><br><span class="line">    </span><br><span class="line">    @Resource(<span class="built_in">type</span> = Monkey.class)</span><br><span class="line">    private Monkey monkey;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> tiger + <span class="string">"\n"</span> + monkey;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是详细一些的用法，说一下@Resource的装配顺序：</p>
+<p>1、@Resource后面没有任何内容，默认通过name属性去匹配bean，找不到再按type去匹配</p>
+<p>2、指定了name或者type则根据指定的类型去匹配bean</p>
+<p>3、指定了name和type则根据指定的name和type去匹配bean，任何一个不匹配都将报错</p>
+<p>然后，区分一下@Autowired和@Resource两个注解的区别：</p>
+<p>1、@Autowired默认按照byType方式进行bean匹配，@Resource默认按照byName方式进行bean匹配</p>
+<p>2、@Autowired是Spring的注解，@Resource是J2EE的注解，这个看一下导入注解的时候这两个注解的包名就一清二楚了</p>
+<p>Spring属于第三方的，J2EE是Java自己的东西，因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。</p>
+<h1 id="Service"><a href="#Service" class="headerlink" title="@Service"></a>@Service</h1><p>上面这个例子，还可以继续简化，因为spring的配置文件里面还有12行~14行三个bean，下一步的简化是把这三个bean也给去掉，使得spring配置文件里面只有一个自动扫描的标签，增强Java代码的内聚性并进一步减少配置文件。</p>
+<p>要继续简化，可以使用@Service。先看一下配置文件，当然是全部删除了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>   </span><br><span class="line">    xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span><br><span class="line">    xmlns:context=<span class="string">"http://www.springframework.org/schema/context"</span>  </span><br><span class="line">    xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans </span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/context</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/context/spring-context-4.2.xsd"</span>&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;context:component-scan base-package=<span class="string">"com.xrq"</span> /&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<p>是不是感觉很爽？起码我觉得是的。OK，下面以Zoo.java为例，其余的Monkey.java和Tiger.java都一样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class Zoo</span><br><span class="line">&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private Tiger ttiger;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    private Monkey mmonkey;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> ttiger + <span class="string">"\n"</span> + mmonkey;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，Zoo.java在Spring容器中存在的形式就是”zoo”，即可以通过ApplicationContext的getBean(“zoo”)方法来得到Zoo.java。@Service注解，其实做了两件事情：</p>
+<p>1、声明Zoo.java是一个bean，这点很重要，因为Zoo.java是一个bean，其他的类才可以使用@Autowired将Zoo作为一个成员变量自动注入</p>
+<p>2、Zoo.java在bean中的id是”zoo”，即类名且首字母小写</p>
+<p>如果，我不想用这种形式怎么办，就想让Zoo.java在Spring容器中的名字叫做”Zoo”，可以的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">@Scope(<span class="string">"prototype"</span>)</span><br><span class="line">public class Zoo</span><br><span class="line">&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private Monkey monkey;</span><br><span class="line">    @Autowired</span><br><span class="line">    private Tiger tiger;</span><br><span class="line">    </span><br><span class="line">    public String toString()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"MonkeyName:"</span> + monkey + <span class="string">"\nTigerName:"</span> + tiger;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，就可以通过ApplicationContext的getBean(“zoo”)方法来得到Zoo.java了。</p>
+<p>这里我还多加了一个@Scope注解，应该 很好理解。因为Spring默认产生的bean是单例的，假如我不想使用单例怎么办，xml文件里面可以在bean里面配置scope属性。注解也是一 样，配置@Scope即可，默认是”singleton”即单例，”prototype”表示原型即每次都会new一个新的出来。</p>
+<h1 id="补充细节"><a href="#补充细节" class="headerlink" title="补充细节"></a>补充细节</h1><p>最后再补充一个我发现的细节。假如animal包下有Tiger、domain包下也有Tiger，它们二者都加了@Service注解，那么在Zoo.java中即使明确表示我要引用的是domain包下的Tiger，程序运行的时候依然会报错。</p>
+<p>细想，其实这很好理解，两个Tiger都使 用@Service注解标注，意味着两个Bean的名字都是”tiger”，那么我在Zoo.java中自动装配的是哪个Tiger呢？不明确，因 此，Spring容器会抛出BeanDefinitionStoreException异常，Caused by：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionException: Annotation-specified bean name <span class="string">'monkey'</span> <span class="keyword">for</span> bean class [com.xrq.domain.Monkey] conflicts with existing, non-compatible bean definition of same name and class [com.xrq.animal.Monkey]</span><br></pre></td></tr></table></figure>
+
+<p>转载于：<a href="https://www.cnblogs.com/szlbm/p/5512931.html#top" target="_blank" rel="noopener">https://www.cnblogs.com/szlbm/p/5512931.html#top</a><br>作者：IT·达人</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://zhoudyme.github.io">
+            <img src="/img/avatar.jpg" alt="zhoudy">
+            zhoudy
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/&title=《Spring5：@Autowired注解、@Resource注解和@Service注解[转载]》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/&title=《Spring5：@Autowired注解、@Resource注解和@Service注解[转载]》 — zhoudy&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring5：@Autowired注解、@Resource注解和@Service注解[转载]》 — zhoudy&url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/&via=https://zhoudyme.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/19/ba55bd2879a211ea9e7f28d244de8d5a/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">纯css，div隐藏滚动条，保留鼠标滚动效果[转载]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>zhoudy &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/&title=《Spring5：@Autowired注解、@Resource注解和@Service注解[转载]》 — zhoudy&pic=https://zhoudyme.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/&title=《Spring5：@Autowired注解、@Resource注解和@Service注解[转载]》 — zhoudy&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring5：@Autowired注解、@Resource注解和@Service注解[转载]》 — zhoudy&url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/&via=https://zhoudyme.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhoudyme.github.io/2018/12/10/042b7d4679a411ea9e7f28d244de8d5a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQW7DMAwEwPz/0+21QGB3SYpuCkxORdLYGh1MZcnXK359/Xi9v/P+/v23kmve3+XwCw8PD2+w9PtF39/m/f3kP++3IGdfrg0PDw9vjZcsIvk7uuWheyVbjIeHh/fJvN5ZNwfj4eHh/V9eL0rINy6POfDw8PD+lle9dPWQXV1WsimHsxY8PDy8fjJwOCzY+Hulv4eHh4c37qonzbCkPdYrOfl1Lq+Ph4eHt8DLH7jVoOHsSFa1kYaHh4f3DG8Sy1Y/7Y0U9KITPDw8vA3eqV/3vfZYsjXV+HiUuODh4eHd8qrLqhaJvCRUQ5BoPXh4eHgLvOrtJ8fcamibjIVFFQ8PDw/vKC9/rOcjBdUNyqONatHCw8PD2+CdWmLOqB7Bq+Xhl0gCDw8P7xBvfuSdtLiqcW1yXzw8PLwnefdxQ/VbvWbYqfvi4eHh7fF6A6bVoDb/dPK6DCPw8PDwDvGqbfhJe2xyaG4e2fHw8PCeSwNevYNvMlIwCRSqRQgPDw9vg9cbC5inHfNHfHRMx8PDw3uQ12s+JYFCXmDyK1+WFjw8PLwFXi8+6A0TVLfjWBsMDw8P7yiv96itHqxzQO+QXWiA4eHh4T3CSwYI8kZXHt1Wj/UHxq3w8PDwWinrpFRMIoZqiysfwMLDw8Pb4FUPr9VGVO9/8og5mizDw8PDW+PNF5RfoRfjlgsMHh4e3hovbzvlgUX+lF7p7OHh4eGtDQ300otqAcg39Fjsi4eHh/dcR+mVX7p3FM4D3GoRKsPw8PDwWrykGORjUr1hgl7kEZUNPDw8vDXeJHS4rza90YFeW+6yMODh4eF9DC8/BPfemUTMeHh4eJ/DO9X66sXBedCMh4eHt81LDr7HAoJifz/foFGMi4eHhxfzqj/4q8Nb1aZacvcmAw8PD2/K+wY0IXOoq+H5FwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'zhoudy';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'zhoudy';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
