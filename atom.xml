@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhoudyme.github.io/"/>
-  <updated>2020-04-08T14:28:14.256Z</updated>
+  <updated>2021-08-28T08:01:02.062Z</updated>
   <id>https://zhoudyme.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows自带微软拼音输入法添加小鹤双拼配置</title>
+    <link href="https://zhoudyme.github.io/2021/05/29/a4f8882207b311ecb0460a80ff2603de/"/>
+    <id>https://zhoudyme.github.io/2021/05/29/a4f8882207b311ecb0460a80ff2603de/</id>
+    <published>2021-05-29T03:46:51.000Z</published>
+    <updated>2021-08-28T08:01:02.062Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、复制以下代码到记事本，保存<br>#############（以下是文本内容）#############<br>Windows Registry Editor Version 5.00<br>[HKEY_CURRENT_USER\Software\Microsoft\InputMethod\Settings\CHS]<br>“LangBar Force On”=dword:00000000<br>“Enable Double Pinyin”=dword:00000001<br>“EmoticonTipTriggerCount”=dword:00000001<br>“HapLastDownloadTime”=hex(b):eb,69,29,59,00,00,00,00<br>“UserDefinedDoublePinyinScheme0”=”小鹤双拼<em>2</em>^*iuvdjhcwfg xmlnpbksqszxkrltvyovt”<br>“DoublePinyinScheme”=dword:0000000a<br>“UDLLastUpdatedTime”=”2017-05-27 22:01:40”<br>“UDLCount”=dword:0000018b<br>“UDLVisibleCount”=dword:0000018b</p><p>#############（以上是文本内容）#############</p><p>2、修改文件后缀名为reg，双击运行<br>3、设置输入法双拼方案</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、复制以下代码到记事本，保存&lt;br&gt;#############（以下是文本内容）#############&lt;br&gt;Windows Registry Editor Version 5.00&lt;br&gt;[HKEY_CURRENT_USER\Software\Microsoft\I
+      
+    
+    </summary>
+    
+    
+      <category term="其它" scheme="https://zhoudyme.github.io/categories/%E5%85%B6%E5%AE%83/"/>
+    
+    
+      <category term="其它" scheme="https://zhoudyme.github.io/tags/%E5%85%B6%E5%AE%83/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring5：@Autowired注解、@Resource注解和@Service注解[转载]</title>
@@ -48,7 +74,7 @@
     <link href="https://zhoudyme.github.io/2018/11/19/ba55bd2879a211ea9e7f28d244de8d5a/"/>
     <id>https://zhoudyme.github.io/2018/11/19/ba55bd2879a211ea9e7f28d244de8d5a/</id>
     <published>2018-11-19T11:10:51.000Z</published>
-    <updated>2020-04-08T14:25:36.435Z</updated>
+    <updated>2021-08-28T03:55:16.281Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h1><p>当我们的内容超出了我们的div，往往会出现滚动条，影响美观。</p><p>尤其是当我们在做一些导航菜单的时候。滚动条一出现就破坏了UI效果。我们不希望出现滚动条，也不希望超出去的内容被放逐，就要保留鼠标滚动的效果。</p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>这里介绍一个简单的方法。大体思路是在div外面再套一个div。这个div设置overflow:hidden。  </p><p>而内容div设置 overflow-y: scroll;overflow-x: hidden;</p><p>然后再设置外层div的width小于内层div的width。</p><p>这个内层div其实是会出现滚动条的，所以不影响鼠标的滚动效果，而且我们看不到滚动条了。</p><h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>内层div效果：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="1.png" alt="1.png" title="">                </div>                <div class="image-caption">1.png</div>            </figure><p>套上外层div效果后：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="2.png" alt="2.png" title="">                </div>                <div class="image-caption">2.png</div>            </figure><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>css代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">.nav_wrap&#123;</span><br><span class="line">height: 400px;</span><br><span class="line">width: 200px;</span><br><span class="line">overflow: hidden;</span><br><span class="line">border: 1px solid <span class="comment">#ccc;</span></span><br><span class="line">margin: 20px auto;</span><br><span class="line">&#125;</span><br><span class="line">.nav_ul&#123;</span><br><span class="line">height: 100%;</span><br><span class="line">width: 220px;</span><br><span class="line">overflow-y: auto;</span><br><span class="line">overflow-x: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.nav_li&#123;</span><br><span class="line">border: 1px solid <span class="comment">#ccc;</span></span><br><span class="line">margin: -1px;</span><br><span class="line">height: 40px;</span><br><span class="line">line-height: 40px;</span><br><span class="line">text-align: center;</span><br><span class="line">font-size: 12px;</span><br><span class="line">width: 200px;</span><br><span class="line">&#125;</span><br><span class="line">.btn_wrap&#123;</span><br><span class="line">text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>html代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class= <span class="string">"nav_wrap"</span>&gt;</span><br><span class="line">&lt;ul class= <span class="string">"nav_ul"</span>&gt;</span><br><span class="line">&lt;li class=<span class="string">"nav_li"</span>&gt;我是菜单1&lt;/li&gt;</span><br><span class="line">&lt;li class=<span class="string">"nav_li"</span>&gt;我是菜单2&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure><p>之前的一个项目中的菜单用到了这个技巧。那个项目用了iframe。 也是让滚动条被遮住了。<br>今天又顺手把目前在做的项目中的导航菜单的滚动条去掉了。 简单总结下来。</p><h1 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h1><p>演示：<a href="http://runningls.com/demos/2016/css/scroll.html" target="_blank" rel="noopener">http://runningls.com/demos/2016/css/scroll.html</a></p><p>转载于：<a href="https://blog.csdn.net/liusaint1992/article/details/51277751" target="_blank" rel="noopener">https://blog.csdn.net/liusaint1992/article/details/51277751</a><br>作者：liusaint1992</p>]]></content>
     
