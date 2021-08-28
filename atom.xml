@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhoudyme.github.io/"/>
-  <updated>2021-08-28T08:01:02.062Z</updated>
+  <updated>2021-08-28T08:06:04.054Z</updated>
   <id>https://zhoudyme.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Windows自带微软拼音输入法添加小鹤双拼配置</title>
+    <title>Windows自带微软输入法添加小鹤双拼配置</title>
     <link href="https://zhoudyme.github.io/2021/05/29/a4f8882207b311ecb0460a80ff2603de/"/>
     <id>https://zhoudyme.github.io/2021/05/29/a4f8882207b311ecb0460a80ff2603de/</id>
     <published>2021-05-29T03:46:51.000Z</published>
-    <updated>2021-08-28T08:01:02.062Z</updated>
+    <updated>2021-08-28T08:06:04.054Z</updated>
     
     <content type="html"><![CDATA[<p>1、复制以下代码到记事本，保存<br>#############（以下是文本内容）#############<br>Windows Registry Editor Version 5.00<br>[HKEY_CURRENT_USER\Software\Microsoft\InputMethod\Settings\CHS]<br>“LangBar Force On”=dword:00000000<br>“Enable Double Pinyin”=dword:00000001<br>“EmoticonTipTriggerCount”=dword:00000001<br>“HapLastDownloadTime”=hex(b):eb,69,29,59,00,00,00,00<br>“UserDefinedDoublePinyinScheme0”=”小鹤双拼<em>2</em>^*iuvdjhcwfg xmlnpbksqszxkrltvyovt”<br>“DoublePinyinScheme”=dword:0000000a<br>“UDLLastUpdatedTime”=”2017-05-27 22:01:40”<br>“UDLCount”=dword:0000018b<br>“UDLVisibleCount”=dword:0000018b</p><p>#############（以上是文本内容）#############</p><p>2、修改文件后缀名为reg，双击运行<br>3、设置输入法双拼方案</p>]]></content>
     
